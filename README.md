@@ -14,12 +14,10 @@ Print from Obsidian
 
 ## TODO
 
-- [ ] Add support for mobile app
+- [ ] Add support for mobile app (currently works on macOS and Windows)
 - [ ] Add print icon to ribbon
-- [ ] Improve print styling (specifically for internal links)
-- [ ] Add support for custom CSS
-- [ ] Add supoport for specific printers
-- [ ] Add demo video/gif
+- [ ] Improve print styling
+- [ ] Add demo
 - [ ] Automate releases
 
 ## Feedback

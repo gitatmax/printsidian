@@ -8,9 +8,16 @@ Print from Obsidian
 2. Access the command palette and select "Print Note."
 3. Your device's print dialog will appear.
 
-## Settings
+_Enable or Disable the plugin from Obsidian's settings._
 
-- Enable or Disable
+## Build
+
+```
+npm install
+npm run build
+```
+
+To test the plugin in Obsidian, replace the contents of the Printsidian plugin directory with the updated contents of the `dist` folder.
 
 ## Feedback
 

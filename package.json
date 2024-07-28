@@ -1,16 +1,18 @@
 {
   "name": "printsidian",
   "version": "1.0.0",
-  "description": "",
+  "description": "Print Easily",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "@types/marked": "^5.0.1",
     "typescript": "^5.5.3"
   },
   "dependencies": {

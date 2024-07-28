@@ -12,14 +12,6 @@ Print from Obsidian
 
 - Enable or Disable
 
-## TODO
-
-- [ ] Add support for mobile app (currently works on macOS and Windows)
-- [ ] Add print icon to ribbon
-- [ ] Improve print styling
-- [ ] Add demo
-- [ ] Automate releases
-
 ## Feedback
 
 If you have any feedback or suggestions, please let me know! [Pull requests](https://github.com/gitatmax/printsidian/pulls) are also welcome.

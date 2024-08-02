@@ -5,7 +5,7 @@ Print from Obsidian
 ## Usage
 
 1. Open a note in Obsidian.
-2. Access the command palette and select "Print Note."
+2. Access the command palette and select "Print note."
 3. Your device's print dialog will appear.
 
 ## Build

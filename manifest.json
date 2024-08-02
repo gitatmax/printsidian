@@ -1,9 +1,9 @@
 {
-  "id": "printsidian",
-  "name": "Printsidian",
+  "id": "print",
+  "name": "Print",
   "version": "1.0.0",
   "minAppVersion": "0.12.0",
-  "description": "Print from Obsidian",
+  "description": "Print the current note",
   "author": "Maxwell White",
   "authorUrl": "https://maxs.link",
   "isDesktopOnly": true

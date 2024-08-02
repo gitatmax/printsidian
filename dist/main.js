@@ -16,19 +16,14 @@ const DEFAULT_SETTINGS = {
 class PrintPlugin extends obsidian_1.Plugin {
     onload() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('Loading print plugin');
             yield this.loadSettings();
             this.addCommand({
                 id: 'print-note',
-                name: 'Print Note',
+                name: 'Print note',
                 callback: () => this.printCurrentNote(),
-                hotkeys: [{ modifiers: ["Mod", "Shift"], key: "P" }]
             });
             this.addSettingTab(new PrintSettingTab(this.app, this));
         });
-    }
-    onunload() {
-        console.log('Unloading print plugin');
     }
     loadSettings() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42,13 +37,10 @@ class PrintPlugin extends obsidian_1.Plugin {
     }
     printCurrentNote() {
         var _a, _b;
-        console.log('printCurrentNote called');
         const activeView = this.app.workspace.getActiveViewOfType(obsidian_1.MarkdownView);
         if (activeView) {
-            console.log('Active view found');
             const content = activeView.getViewData();
             const title = (_b = (_a = activeView.file) === null || _a === void 0 ? void 0 : _a.basename) !== null && _b !== void 0 ? _b : 'Untitled';
-            console.log('Title:', title); // Log the title
             const printFrame = document.createElement('iframe');
             printFrame.style.position = 'fixed';
             printFrame.style.right = '0';
@@ -63,7 +55,7 @@ class PrintPlugin extends obsidian_1.Plugin {
                 const htmlContent = `
           <html>
             <head>
-              <title>Print Note: ${title}</title>
+              <title>Print note: ${title}</title>
               <style>
                 body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
                 pre { background-color: #f4f4f4; padding: 1em; border-radius: 4px; }
@@ -99,9 +91,7 @@ class PrintPlugin extends obsidian_1.Plugin {
               <h1 id="note-title">${title}</h1>
               <div id="content"></div>
               <script>
-                console.log('Title in iframe:', '${title}');
                 document.getElementById('note-title').textContent = '${title}';
-                console.log('Title element content:', document.getElementById('note-title').textContent);
 
                 marked.setOptions({
                   highlight: function(code, lang) {
@@ -127,7 +117,6 @@ class PrintPlugin extends obsidian_1.Plugin {
                 hljs.highlightAll();
 
                 window.onload = () => {
-                  console.log('Window loaded, title:', document.getElementById('note-title').textContent);
                   window.print();
                   window.onafterprint = () => {
                     window.parent.document.body.removeChild(window.frameElement);
@@ -139,7 +128,6 @@ class PrintPlugin extends obsidian_1.Plugin {
         `;
                 frameWindow.document.write(htmlContent);
                 frameWindow.document.close();
-                console.log('HTML content written to iframe');
             }
             else {
                 console.error('Failed to access iframe content window');
@@ -151,23 +139,3 @@ class PrintPlugin extends obsidian_1.Plugin {
     }
 }
 exports.default = PrintPlugin;
-class PrintSettingTab extends obsidian_1.PluginSettingTab {
-    constructor(app, plugin) {
-        super(app, plugin);
-        this.plugin = plugin;
-    }
-    display() {
-        const { containerEl } = this;
-        containerEl.empty();
-        containerEl.createEl('h2', { text: 'Print Plugin Settings' });
-        new obsidian_1.Setting(containerEl)
-            .setName('Enable Print Option')
-            .setDesc('Enable or disable the print option.')
-            .addToggle(toggle => toggle
-            .setValue(this.plugin.settings.printOption)
-            .onChange((value) => __awaiter(this, void 0, void 0, function* () {
-            this.plugin.settings.printOption = value;
-            yield this.plugin.saveSettings();
-        })));
-    }
-}

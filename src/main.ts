@@ -12,22 +12,16 @@ export default class PrintPlugin extends Plugin {
   settings!: PrintPluginSettings;
 
   async onload() {
-    console.log('Loading print plugin');
 
     await this.loadSettings();
 
     this.addCommand({
       id: 'print-note',
-      name: 'Print Note',
+      name: 'Print note',
       callback: () => this.printCurrentNote(),
-      hotkeys: [{ modifiers: ["Mod", "Shift"], key: "P" }]
     });
 
     this.addSettingTab(new PrintSettingTab(this.app, this));
-  }
-
-  onunload() {
-    console.log('Unloading print plugin');
   }
 
   async loadSettings() {
@@ -39,13 +33,10 @@ export default class PrintPlugin extends Plugin {
   }
 
   printCurrentNote() {
-    console.log('printCurrentNote called');
     const activeView = this.app.workspace.getActiveViewOfType(MarkdownView);
     if (activeView) {
-      console.log('Active view found');
       const content = activeView.getViewData();
       const title = activeView.file?.basename ?? 'Untitled';
-      console.log('Title:', title); // Log the title
 
       const printFrame = document.createElement('iframe');
       printFrame.style.position = 'fixed';
@@ -62,7 +53,7 @@ export default class PrintPlugin extends Plugin {
         const htmlContent = `
           <html>
             <head>
-              <title>Print Note: ${title}</title>
+              <title>Print note: ${title}</title>
               <style>
                 body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
                 pre { background-color: #f4f4f4; padding: 1em; border-radius: 4px; }
@@ -98,9 +89,7 @@ export default class PrintPlugin extends Plugin {
               <h1 id="note-title">${title}</h1>
               <div id="content"></div>
               <script>
-                console.log('Title in iframe:', '${title}');
                 document.getElementById('note-title').textContent = '${title}';
-                console.log('Title element content:', document.getElementById('note-title').textContent);
 
                 marked.setOptions({
                   highlight: function(code, lang) {
@@ -126,7 +115,6 @@ export default class PrintPlugin extends Plugin {
                 hljs.highlightAll();
 
                 window.onload = () => {
-                  console.log('Window loaded, title:', document.getElementById('note-title').textContent);
                   window.print();
                   window.onafterprint = () => {
                     window.parent.document.body.removeChild(window.frameElement);
@@ -138,38 +126,11 @@ export default class PrintPlugin extends Plugin {
         `;
         frameWindow.document.write(htmlContent);
         frameWindow.document.close();
-        console.log('HTML content written to iframe');
       } else {
         console.error('Failed to access iframe content window');
       }
     } else {
       console.error('No active view found');
     }
-  }
-}
-
-class PrintSettingTab extends PluginSettingTab {
-  plugin: PrintPlugin;
-
-  constructor(app: App, plugin: PrintPlugin) {
-    super(app, plugin);
-    this.plugin = plugin;
-  }
-
-  display(): void {
-    const { containerEl } = this;
-    containerEl.empty();
-
-    containerEl.createEl('h2', { text: 'Print Plugin Settings' });
-
-    new Setting(containerEl)
-      .setName('Enable Print Option')
-      .setDesc('Enable or disable the print option.')
-      .addToggle(toggle => toggle
-        .setValue(this.plugin.settings.printOption)
-        .onChange(async (value) => {
-          this.plugin.settings.printOption = value;
-          await this.plugin.saveSettings();
-        }));
   }
 }

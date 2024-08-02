@@ -8,8 +8,6 @@ Print from Obsidian
 2. Access the command palette and select "Print Note."
 3. Your device's print dialog will appear.
 
-_Enable or Disable the plugin from Obsidian's settings._
-
 ## Build
 
 ```

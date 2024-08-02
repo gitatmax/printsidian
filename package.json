@@ -1,7 +1,7 @@
 {
-  "name": "printsidian",
+  "name": "print",
   "version": "1.0.0",
-  "description": "Print Easily",
+  "description": "Print the current note",
   "main": "index.js",
   "scripts": {
     "build": "tsc",

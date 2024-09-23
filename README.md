@@ -1,4 +1,4 @@
-_Please consider using <obsidian://show-plugin?id=print> in Obsidian as it achieves what I wanted & more!_
+_Please consider using [Print](https://github.com/marijnbent/obsidian-print) in Obsidian as it achieves what I wanted & more!_
 
 # Printsidian
 

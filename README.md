@@ -1,3 +1,5 @@
+_Please consider using <obsidian://show-plugin?id=print> in Obsidian as it achieves what I wanted & more!_
+
 # Printsidian
 
 Print from Obsidian
